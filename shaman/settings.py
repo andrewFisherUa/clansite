@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'protected-temple-67157.herokuapp.com',
+    'fuerzadeoscuridad.herokuapp.com',
     'localhost'
 ]
 
