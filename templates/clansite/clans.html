@@ -1,0 +1,45 @@
+{% extends 'shaman/base.html' %}
+{% load clans %}
+
+{% block title %}Список кланов{% endblock %}
+
+{% block body_block %}
+  {% load static %}
+  <div class="row">
+    <div class="col-md-3">
+      <div class="menu-title">
+        Полезное
+      </div>
+      <ul class="menu">
+        {% for category in categories %}
+          {% if category.name != "Устав" and category.name != "История" %}
+            <a href="{% url 'category' category.pk %}"><li>{{ category.name }}</li></a>
+            {% if category.pk == 1 %}
+              <a href="{% url 'clans' %}"><li>Список кланов</li></a>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <center>
+        <div class="menu-title">
+          Список кланов
+        </div>
+      </center><br><br>
+      {% for key, value in clans.items %}
+        {% if value != False %}
+          {% defineAlign value.align as alignurl %}
+          {% defineClanIcon value.cname as iconurl %}
+          <span class="char-login">
+            <img src="{{alignurl}}">
+            <img src="{{iconurl}}">
+            <a href="{% url 'clan' value.cname %}">
+              {{ value.cname }}<br>
+            </a>
+          </span>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

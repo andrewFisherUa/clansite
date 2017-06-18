@@ -1,0 +1,25 @@
+{% extends 'shaman/base.html' %}
+
+{% block title %}{{category.name}}{% endblock %}
+
+{% block body_block %}
+  {% load static %}
+  <div class="row">
+    <div class="col-md-3">
+      <div class="menu-title">
+        Полезное
+      </div>
+      <ul class="menu">
+        {% for category in categories %}
+          <a href="{% url 'category' category.pk %}"><li>{{ category.name }}</li></a>
+          {% if category.pk == 1 %}
+            <a href="{% url 'clans' %}"><li>Список кланов</li></a>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <p>Hello world</p>
+    </div>
+  </div>
+{% endblock %}

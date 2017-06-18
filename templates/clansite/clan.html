@@ -1,0 +1,61 @@
+{% extends 'shaman/base.html' %}
+{% load clans %}
+
+{% block title %}Состав клана{% endblock %}
+
+{% block body_block %}
+  {% load static %}
+  <div class="row">
+    <div class="col-md-3">
+      <div class="menu-title">
+        Полезное
+      </div>
+      <ul class="menu">
+        {% for category in categories %}
+          {% if category.name != "Устав" and category.name != "История" %}
+            <a href="{% url 'category' category.pk %}"><li>{{ category.name }}</li></a>
+            {% if category.pk == 1 %}
+              <a href="{% url 'clans' %}"><li>Список кланов</li></a>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <center>
+        <div class="menu-title">
+          Состав клана {{name}}
+        </div>
+      </center><br><br>
+      {% for key, value in clan.items %}
+        {% if value != False %}
+            {% defineAlign value.align as alignurl %}
+            {% defineClanIcon name as iconurl %}
+            <span class="char-login">
+              <img src="{{alignurl}}">
+              <img src="{{iconurl}}">
+              {{ value.login }}
+              {% defineInfoUrl value.cid as infourl %}
+              <a href="{{infourl}}" target="blank">
+                <img src="http://imgs.neverfate.ru/i/inf_1.png">
+              </a>
+            </span>
+            {% if value.clanstatus != "" %}
+              - {{ value.clanstatus }}
+              {% if value.bossclan == "1" %}
+                <span class="char-login">
+                  Глава клана
+                </span>
+              {% endif %}<br>
+            {% else %}
+              {% if value.bossclan == "1" %}
+                <span class="char-login">
+                   - Глава клана
+                </span>
+              {% endif %}<br>
+            {% endif %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

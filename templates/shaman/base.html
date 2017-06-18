@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+        <title>{% block title %}FuerzaDeOscuridad{% endblock %}</title>
+        {% load static %}
+        {# Load the tag library #}
+        {% load bootstrap3 %}
+
+        {# Load CSS and JavaScript #}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+
+        {% load clans %}
+
+        <!-- Display django.contrib.messages as Bootstrap alerts -->
+
+        {% load sass_tags %}
+        <link href="{% sass_src 'main.scss' %}" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body>
+        <div id="wrap">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="header">
+                        <center>
+                        <div class="header-menu">
+                            <span class="top-menu-item">
+                                {% defineClan "FuerzaDeOscuridad" as clansostav %}
+                                <a href="{% url 'clan' clansostav %}">Состав</a>
+                            </span>
+                            <span class="top-menu-item">
+                                <a href="{% url 'category' '14' %}">Устав</a>
+                            </span>
+                            <span class="top-menu-item">
+                                <a href="{% url 'category' '15' %}">История</a>
+                            </span>
+                        </div>
+                        </center>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="container">
+                {% bootstrap_messages %}
+                {% block body_block %}{% endblock %}
+            </div>
+
+            <div id="push"></div>
+        </div>
+        <footer id="footer">
+            <div class="footer-line"></div>
+            <div class="container">
+                
+
+            </div>
+            <div align="center" style="margin-top: 20px;">FuerzaDeOscuridad © 2016</div>
+        </footer>
+    </body>
+</html>
