@@ -8,6 +8,7 @@ django-bootstrap3==8.2.3
 django-compressor==2.1.1
 django-sass-processor==0.5.4
 django-tinymce==2.6.0
+gunicorn==19.7.1
 idna==2.5
 libsass==0.13.2
 phpserialize==1.3
