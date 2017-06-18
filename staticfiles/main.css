@@ -109,4 +109,8 @@ html, body {
       text-decoration: none;
       color: #ccc; }
 
+.counter {
+  position: absolute;
+  margin: 100px 0 0 200px; }
+
 /*# sourceMappingURL=../../../../../static/main.css.map */
